@@ -1,0 +1,987 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "background": "center / cover no-repeat url(\"/local/geo1b.jpg\") fixed",
+            "custom_header": {
+                "active_tab_color": "var(--state-icon-active-color)",
+                "background": "rgba(255, 255, 255, 0.15)",
+                "chevrons": false,
+                "compact_mode": true,
+                "header_text": "Home",
+                "hidden_tab_redirect": false,
+                "shadow": false,
+                "tab_indicator_color": "var(--state-icon-active-color)",
+                "hide_header": true
+            },
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "column_width": "100%",
+                            "layout": "vertical",
+                            "max_columns": 2,
+                            "type": "custom:layout-card",
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "type": "picture-elements",
+                                            "image": "/local/leeg4.png",
+                                            "elements": [
+                                                {
+                                                    "type": "state-label",
+                                                    "entity": "sensor.time",
+                                                    "style": {
+                                                        "left": "60px",
+                                                        "top": "65px",
+                                                        "transform": "scale(2.5,2.5)"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "state-label",
+                                                    "entity": "sensor.date_template",
+                                                    "style": {
+                                                        "left": "35.5px",
+                                                        "top": "90px",
+                                                        "transform": "scale(1.0,1.0)"
+                                                    }
+                                                }
+                                            ],
+                                            "style": "ha-card {\n  margin-top: -50px;\n  background-color: rgba(0, 0, 0, 0);\n  font-size: 100%;\n  -webkit-box-shadow: none;\n  -moz-box-shadow: none;\n   box-shadow: none;\n   text-align: center;\n }\n h1, h3 {\n   font-weight: 400 !important;\n }\n"
+                                        },
+                                        {
+                                            "type": "custom:gap-card"
+                                        },
+                                        {
+                                            "type": "custom:gap-card"
+                                        }
+                                    ],
+                                    "layout": "horizontal",
+                                    "max_columns": 3,
+                                    "max_height": 128,
+                                    "column_width": [
+                                        250,
+                                        250,
+                                        320
+                                    ],
+                                    "type": "custom:layout-card"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "card": {
+                                                "entity": "light.all",
+                                                "icon": "mdi:floor-lamp",
+                                                "name": "Lampen",
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "rgba(55,115,145,0.7)"
+                                                        }
+                                                    ],
+                                                    "icon": [
+                                                        {
+                                                            "margin-top": "-30%"
+                                                        },
+                                                        {
+                                                            "right": "33%"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "padding-right": "40%"
+                                                        }
+                                                    ]
+                                                },
+                                                "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-color: rgba(255,204,51,0.7);\n}\n",
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "browser_mod.popup",
+                                                    "service_data": {
+                                                        "card": {
+                                                            "type": "horizontal-stack",
+                                                            "cards": [
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "light.vloerlamp",
+                                                                            "name": "Vloerlamp"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.tafellamp",
+                                                                            "name": "Tafellamp"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.slaapkamer",
+                                                                            "name": "Slaapkamer",
+                                                                            "icon": "mdi:lightbulb"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.badkamer",
+                                                                            "name": "Badkamer Plafond"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.lavabo",
+                                                                            "name": "Badkamer Lavabo"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                },
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "light.berging",
+                                                                            "name": "Berging"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.aqarahub",
+                                                                            "name": "Hal"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.wc",
+                                                                            "name": "Toilet"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.terras",
+                                                                            "name": "Terras"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.ledstrip_1",
+                                                                            "name": "Computer"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                },
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "light.bureau",
+                                                                            "name": "Bureau xxx"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.entertainmentruimte_studio",
+                                                                            "name": "Bureau xxx"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.spotjes_xxx",
+                                                                            "name": "Spotjes xxx"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.spotjes_xxx",
+                                                                            "name": "Spotjes xxx"
+                                                                        },
+                                                                        {
+                                                                            "entity": "light.basstraps",
+                                                                            "name": "Basstraps"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "large": true,
+                                                        "title": "Verlichting"
+                                                    }
+                                                },
+                                                "type": "custom:button-card"
+                                            },
+                                            "style": "ha-card {\n  --paper-item-icon-active-color: rgba(255, 194, 51, 1);\n  height: 175px;\n}\n",
+                                            "type": "custom:mod-card"
+                                        },
+                                        {
+                                            "card": {
+                                                "entity": "group.sensoren",
+                                                "icon": "mdi:door",
+                                                "name": "Sensoren",
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "rgba(209,71,163,0.7)"
+                                                        }
+                                                    ],
+                                                    "icon": [
+                                                        {
+                                                            "margin-top": "-30%"
+                                                        },
+                                                        {
+                                                            "right": "30%"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "padding-right": "35%"
+                                                        }
+                                                    ]
+                                                },
+                                                "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-color: rgba(102,204,153,0.7);\n}\n",
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "browser_mod.popup",
+                                                    "service_data": {
+                                                        "card": {
+                                                            "type": "horizontal-stack",
+                                                            "cards": [
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_voordeur",
+                                                                            "name": "Voordeur"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_berging",
+                                                                            "name": "Berging"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_slaapkamer",
+                                                                            "name": "Slaapkamer"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                },
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "binary_sensor.bewegingssensor_woonkamer",
+                                                                            "name": "Woonkamer"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.bewegingssensor_keuken",
+                                                                            "name": "Keuken"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.bewegingssensor_hal",
+                                                                            "name": "Hal"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.bewegingssensor_toilet",
+                                                                            "name": "Toilet"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                },
+                                                                {
+                                                                    "entities": [
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_badkamer",
+                                                                            "name": "Badkamer"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_studio",
+                                                                            "name": "Studio"
+                                                                        },
+                                                                        {
+                                                                            "entity": "binary_sensor.deursensor_terras",
+                                                                            "name": "Terras"
+                                                                        }
+                                                                    ],
+                                                                    "show_header_toggle": false,
+                                                                    "type": "entities",
+                                                                    "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "large": true,
+                                                        "title": "Sensoren"
+                                                    }
+                                                },
+                                                "type": "custom:button-card"
+                                            },
+                                            "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-active-color: rgba(90, 211, 161, 1);\n}\n",
+                                            "type": "custom:mod-card"
+                                        },
+                                        {
+                                            "card": {
+                                                "entity": "switch.pc",
+                                                "icon": "mdi:desktop-tower-monitor",
+                                                "name": "Computer",
+                                                "state": [
+                                                    {
+                                                        "value": "on",
+                                                        "color": "rgba(216, 70, 136, 1)"
+                                                    },
+                                                    {
+                                                        "value": "off",
+                                                        "color": "rgba(209,71,163,0.7)"
+                                                    }
+                                                ],
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "rgba(102,204,153,0.6)"
+                                                        }
+                                                    ],
+                                                    "icon": [
+                                                        {
+                                                            "margin-top": "-35%"
+                                                        },
+                                                        {
+                                                            "right": "23%"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "padding-right": "32%"
+                                                        }
+                                                    ]
+                                                },
+                                                "style": "ha-card {\n  height: 175px;\n}\n",
+                                                "type": "custom:button-card"
+                                            },
+                                            "style": "ha-card {\n  height: 175px;\n}\n",
+                                            "type": "custom:mod-card"
+                                        },
+                                        {
+                                            "card": {
+                                                "entity": "camera.camerawoonkamer",
+                                                "icon": "mdi:cctv",
+                                                "name": "Camera",
+                                                "color": "rgba(55,115,145,0.8)",
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "rgba(255,204,51,0.6)"
+                                                        }
+                                                    ],
+                                                    "icon": [
+                                                        {
+                                                            "margin-top": "-35%"
+                                                        },
+                                                        {
+                                                            "right": "25%"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "padding-right": "45%"
+                                                        }
+                                                    ]
+                                                },
+                                                "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-active-color: rgba(55,115,145,0.7);\n}\n",
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "browser_mod.popup",
+                                                    "service_data": {
+                                                        "card": {
+                                                            "type": "horizontal-stack",
+                                                            "cards": [
+                                                                {
+                                                                    "type": "picture-entity",
+                                                                    "entity": "camera.camerawoonkamer",
+                                                                    "show_state": false,
+                                                                    "show_name": false,
+                                                                    "style": "ha-card {\n  background-color: rgba(0,0,0,0);\n}\n"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "large": true,
+                                                        "title": "Camera"
+                                                    }
+                                                },
+                                                "type": "custom:button-card"
+                                            },
+                                            "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-active-color: #e79118;\n}\n",
+                                            "type": "custom:mod-card"
+                                        },
+                                        {
+                                            "card": {
+                                                "entity": "alarm_control_panel.alarm",
+                                                "icon": "mdi:bell-circle-outline",
+                                                "name": "Alarm",
+                                                "color": "rgba(222,231,54,0.8)",
+                                                "state": [
+                                                    {
+                                                        "value": "armed_home",
+                                                        "color": "rgba(231, 72, 54, 1)"
+                                                    },
+                                                    {
+                                                        "value": "armed_away",
+                                                        "color": "rgba(231, 72, 54, 1)"
+                                                    }
+                                                ],
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "rgba(115,71,209,0.6)"
+                                                        }
+                                                    ],
+                                                    "icon": [
+                                                        {
+                                                            "margin-top": "-30%"
+                                                        },
+                                                        {
+                                                            "right": "23%"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "padding-right": "50%"
+                                                        }
+                                                    ]
+                                                },
+                                                "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-active-color: rgba(222,231,54,0.7);\n}\n",
+                                                "type": "custom:button-card",
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "browser_mod.popup",
+                                                    "service_data": {
+                                                        "card": {
+                                                            "type": "horizontal-stack",
+                                                            "cards": [
+                                                                {
+                                                                    "type": "alarm-panel",
+                                                                    "entity": "alarm_control_panel.alarm",
+                                                                    "style": "ha-card {\n  background-color: rgba(0,0,0,0);\n}\n"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "large": false,
+                                                        "title": "Alarm"
+                                                    }
+                                                }
+                                            },
+                                            "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-active-color: #e79118;\n}\n",
+                                            "type": "custom:mod-card"
+                                        }
+                                    ],
+                                    "column_width": 150,
+                                    "layout": "horizontal",
+                                    "max_columns": 5,
+                                    "max_height": 128,
+                                    "max_width": 150,
+                                    "type": "custom:layout-card"
+                                },
+                                {
+                                    "type": "custom:layout-card",
+                                    "column_width": 256,
+                                    "layout": "horizontal",
+                                    "max_columns": 3,
+                                    "max_height": 256,
+                                    "max_width": 375,
+                                    "cards": [
+                                        {
+                                            "card": {
+                                                "type": "custom:vertical-stack-in-card",
+                                                "cards": [
+                                                    {
+                                                        "type": "picture-elements",
+                                                        "image": "/local/leeg6.png",
+                                                        "elements": [
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.sidebar_greeting",
+                                                                "style": {
+                                                                    "left": "15px",
+                                                                    "top": "28px",
+                                                                    "font-size": "125%",
+                                                                    "transform": "none"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.sidebar_active",
+                                                                "style": {
+                                                                    "left": "15px",
+                                                                    "top": "48px",
+                                                                    "transform": "none"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.verwarming_temperature",
+                                                                "style": {
+                                                                    "right": "45px",
+                                                                    "top": "28px",
+                                                                    "transform": "scale(1.1,1.1)",
+                                                                    "color": "rgba(255,255,255,0.3)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "mdi:home-thermometer",
+                                                                "style": {
+                                                                    "right": "5px",
+                                                                    "top": "45px",
+                                                                    "color": "rgba(255,255,255,0.3)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.verwarming_humidity",
+                                                                "style": {
+                                                                    "right": "45px",
+                                                                    "top": "50px",
+                                                                    "transform": "scale(1.1,1.1)",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "mdi:water-percent",
+                                                                "style": {
+                                                                    "right": "5px",
+                                                                    "top": "68px",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "switch.wasmachine",
+                                                                "style": {
+                                                                    "right": "45px",
+                                                                    "top": "90px",
+                                                                    "transform": "scale(1.0,1.0)",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "mdi:washing-machine",
+                                                                "style": {
+                                                                    "right": "17px",
+                                                                    "top": "96px",
+                                                                    "color": "rgba(255,255,255,0.3",
+                                                                    "transform": "scale(0.8,0.8)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.afvaltype",
+                                                                "style": {
+                                                                    "left": "220px",
+                                                                    "top": "184px",
+                                                                    "color": "rgba(255,255,255,0.3)",
+                                                                    "transform": "none"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "mdi:recycle",
+                                                                "style": {
+                                                                    "right": "17px",
+                                                                    "top": "187px",
+                                                                    "color": "rgba(255,255,255,0.3)",
+                                                                    "transform": "scale(0.8,0.8)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.afvaldatum",
+                                                                "style": {
+                                                                    "left": "220px",
+                                                                    "top": "201px",
+                                                                    "color": "rgba(255,255,255,0.3",
+                                                                    "transform": "none"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "mdi:calendar-month",
+                                                                "style": {
+                                                                    "right": "17px",
+                                                                    "top": "207px",
+                                                                    "color": "rgba(255,255,255,0.3",
+                                                                    "transform": "scale(0.8,0.8)"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "image",
+                                                                "image": "/local/person2rond.png",
+                                                                "style": {
+                                                                    "width": "12%",
+                                                                    "right": "280px",
+                                                                    "top": "149px"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "person.xxx",
+                                                                "style": {
+                                                                    "right": "245px",
+                                                                    "top": "123px",
+                                                                    "transform": "none",
+                                                                    "width": "12%"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.xxx",
+                                                                "style": {
+                                                                    "right": "245px",
+                                                                    "top": "140px",
+                                                                    "transform": "none",
+                                                                    "width": "12%",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "fas:shipping-fast",
+                                                                "style": {
+                                                                    "right": "190px",
+                                                                    "top": "145px",
+                                                                    "transform": "scale(0.7,0.7)",
+                                                                    "width": "12%",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "image",
+                                                                "image": "/local/person1rond.png",
+                                                                "style": {
+                                                                    "width": "12%",
+                                                                    "right": "280px",
+                                                                    "top": "207px"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "person.xxx",
+                                                                "style": {
+                                                                    "right": "245px",
+                                                                    "top": "183px",
+                                                                    "transform": "none",
+                                                                    "width": "12%"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "state-label",
+                                                                "entity": "sensor.xxx",
+                                                                "style": {
+                                                                    "right": "245px",
+                                                                    "top": "200px",
+                                                                    "transform": "none",
+                                                                    "width": "12%",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "icon",
+                                                                "icon": "fas:graduation-cap",
+                                                                "style": {
+                                                                    "right": "190px",
+                                                                    "top": "205px",
+                                                                    "transform": "scale(0.7,0.7)",
+                                                                    "width": "12%",
+                                                                    "color": "rgba(255,255,255,0.3"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            "style": "ha-card {\n  height: 264px;\n  text-align: left;\n}\n",
+                                            "type": "custom:mod-card"
+                                        },
+                                        {
+                                            "card": {
+                                                "type": "weather-forecast",
+                                                "entity": "weather.dd_home",
+                                                "name": "xxx"
+                                            },
+                                            "style": "ha-card {\n  height: 264px;\n  text-align: left;\n}\n",
+                                            "type": "custom:mod-card"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "type": "custom:layout-card",
+                                            "layout": "horizontal",
+                                            "max_height": 125,
+                                            "column_width": [
+                                                50,
+                                                50,
+                                                50,
+                                                600
+                                            ],
+                                            "cards": [
+                                                {
+                                                    "card": {
+                                                        "entity": "vacuum.basje_2",
+                                                        "show_name": false,
+                                                        "icon": "mdi:information",
+                                                        "size": "30px",
+                                                        "name": "Info",
+                                                        "styles": {
+                                                            "icon": [
+                                                                {
+                                                                    "right": "20%"
+                                                                }
+                                                            ],
+                                                            "card": [
+                                                                {
+                                                                    "background-color": "rgba(0,0,0,0)"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "tap_action": {
+                                                            "action": "call-service",
+                                                            "service": "browser_mod.popup",
+                                                            "service_data": {
+                                                                "card": {
+                                                                    "type": "horizontal-stack",
+                                                                    "cards": [
+                                                                        {
+                                                                            "entities": [
+                                                                                {
+                                                                                    "entity": "sensor.processor_use",
+                                                                                    "name": "CPU gebruik",
+                                                                                    "icon": "mdi:cpu-64-bit"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.cpu_temperature",
+                                                                                    "name": "CPU temp"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.memory_use",
+                                                                                    "name": "RAM in gebruik"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.memory_free",
+                                                                                    "name": "RAM vrij"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.disk_use_home",
+                                                                                    "name": "DISK in gebruik"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.disk_free_home",
+                                                                                    "name": "DISK vrij"
+                                                                                }
+                                                                            ],
+                                                                            "show_header_toggle": false,
+                                                                            "type": "entities",
+                                                                            "title": "Pi 3 Model B+",
+                                                                            "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                        },
+                                                                        {
+                                                                            "entities": [
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_cpu_load_total",
+                                                                                    "name": "CPU gebruik",
+                                                                                    "icon": "mdi:cpu-32-bit"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_temperature",
+                                                                                    "name": "CPU temp"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_memory_usage_real",
+                                                                                    "name": "RAM in gebruik"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_volume_1_status",
+                                                                                    "name": "DISK status"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_volume_1_volume_used",
+                                                                                    "name": "DISK in gebruik",
+                                                                                    "icon": "mdi:harddisk"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "sensor.diskstation_volume_1_average_disk_temp",
+                                                                                    "name": "DISK temp"
+                                                                                }
+                                                                            ],
+                                                                            "show_header_toggle": false,
+                                                                            "type": "entities",
+                                                                            "title": "Synology NAS",
+                                                                            "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                        },
+                                                                        {
+                                                                            "entities": [
+                                                                                {
+                                                                                    "entity": "media_player.tv",
+                                                                                    "name": "Tv"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "media_player.googlenesthub",
+                                                                                    "name": "Google Nest Hub",
+                                                                                    "icon": "mdi:television"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "media_player.google_home",
+                                                                                    "name": "Google Home",
+                                                                                    "icon": "mdi:google-home"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "media_player.google_home_mini",
+                                                                                    "name": "Google Home Mini",
+                                                                                    "icon": "mdi:google-home"
+                                                                                },
+                                                                                {
+                                                                                    "entity": "switch.speakers",
+                                                                                    "name": "Studio speakers",
+                                                                                    "icon": "mdi:speaker"
+                                                                                }
+                                                                            ],
+                                                                            "show_header_toggle": false,
+                                                                            "type": "entities",
+                                                                            "title": "Media Spelers",
+                                                                            "style": "ha-card {\n  background-color: rgba(0, 0, 0, 0);\n}\n"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "large": true,
+                                                                "title": "Info"
+                                                            }
+                                                        },
+                                                        "type": "custom:button-card"
+                                                    },
+                                                    "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-color: rgba(255,255,255,0.3)\n}\n",
+                                                    "type": "custom:mod-card"
+                                                },
+                                                {
+                                                    "card": {
+                                                        "entity": "climate.verwarming",
+                                                        "show_name": false,
+                                                        "icon": "mdi:fire",
+                                                        "color": "rgba(255, 255, 255, 0.3)",
+                                                        "size": "30px",
+                                                        "name": "Verwarming",
+                                                        "styles": {
+                                                            "icon": [
+                                                                {
+                                                                    "right": "20%"
+                                                                }
+                                                            ],
+                                                            "card": [
+                                                                {
+                                                                    "background-color": "rgba(0,0,0,0)"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "tap_action": {
+                                                            "action": "call-service",
+                                                            "service": "browser_mod.popup",
+                                                            "service_data": {
+                                                                "card": {
+                                                                    "type": "horizontal-stack",
+                                                                    "cards": [
+                                                                        {
+                                                                            "type": "custom:simple-thermostat",
+                                                                            "entity": "climate.verwarming",
+                                                                            "name": false,
+                                                                            "step_size": 1,
+                                                                            "control": [
+                                                                                "hvac",
+                                                                                "preset"
+                                                                            ],
+                                                                            "style": "ha-card {\n  --st-font-size-xl: 20px;\n  --st-font-size-m: 10px;\n  --st-font-size-title: 20px;\n  --st-font-size-sensors: 13px;\n  --st-spacing: 3.67px;\n  --st-mode-background: ;\n  --st-mode-active-background: ;\n }\n"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "title": "Verwarming"
+                                                            }
+                                                        },
+                                                        "type": "custom:button-card"
+                                                    },
+                                                    "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-color: rgba(255,255,255,0.3)\n}\n",
+                                                    "type": "custom:mod-card"
+                                                },
+                                                {
+                                                    "card": {
+                                                        "entity": "vacuum.basje_2",
+                                                        "show_name": false,
+                                                        "icon": "mdi:robot-vacuum",
+                                                        "size": "30px",
+                                                        "name": "Basje",
+                                                        "styles": {
+                                                            "icon": [
+                                                                {
+                                                                    "right": "20%"
+                                                                }
+                                                            ],
+                                                            "card": [
+                                                                {
+                                                                    "background-color": "rgba(0,0,0,0)"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "tap_action": {
+                                                            "action": "call-service",
+                                                            "service": "browser_mod.popup",
+                                                            "service_data": {
+                                                                "card": {
+                                                                    "type": "horizontal-stack",
+                                                                    "cards": [
+                                                                        {
+                                                                            "type": "custom:vacuum-card",
+                                                                            "entity": "vacuum.basje_2",
+                                                                            "stats": {
+                                                                                "default": [
+                                                                                    {
+                                                                                        "entity_id": "sensor.vacuum_component_filter",
+                                                                                        "unit": "%",
+                                                                                        "subtitle": "Filter"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity_id": "sensor.vacuum_main_brush",
+                                                                                        "unit": "%",
+                                                                                        "subtitle": "Main brush"
+                                                                                    },
+                                                                                    {
+                                                                                        "entity_id": "sensor.vacuum_side_brush",
+                                                                                        "unit": "%",
+                                                                                        "subtitle": "Main brush"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "title": "Basje"
+                                                            }
+                                                        },
+                                                        "type": "custom:button-card"
+                                                    },
+                                                    "style": "ha-card {\n  height: 175px;\n  --paper-item-icon-color: rgba(255,255,255,0.3)\n}\n",
+                                                    "type": "custom:mod-card"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "custom:gap-card"
+                                        },
+                                        {
+                                            "type": "custom:gap-card",
+                                            "style": "ha-card {\n  margin-top: -107px;\n  background-color: rgba(0, 0, 0, 0);\n  font-size: 100%;\n  -webkit-box-shadow: none;\n  -moz-box-shadow: none;\n   box-shadow: none;\n   text-align: center;\n }\n h1, h3 {\n   font-weight: 400 !important;\n }\n"
+                                        }
+                                    ],
+                                    "layout": "horizontal",
+                                    "max_columns": 3,
+                                    "max_height": 128,
+                                    "column_width": [
+                                        250,
+                                        250,
+                                        320
+                                    ],
+                                    "type": "custom:layout-card"
+                                }
+                            ]
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "panel": true,
+                    "path": "home",
+                    "theme": "",
+                    "title": "Home"
+                }
+            ]
+        }
+    }
+}
