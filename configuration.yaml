@@ -1,0 +1,379 @@
+homeassistant:
+  auth_providers:
+  - type: trusted_networks
+    trusted_networks:
+      - 192.168.0.xxx
+      - 192.168.0.xxx
+      - 192.168.0.xxx
+  - type: homeassistant
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: xxxxxx
+  longitude: xxxxx
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: xxxxx
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Brussels
+  # Customization file
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+browser_mod:
+
+frontend:
+  javascript_version: latest
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+    language: 'nl'
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+switch: !include switch.yaml
+
+#Google Calendar
+google:
+  client_id: xxxxxxxxxxxxxxxxxx.apps.googleusercontent.com
+  client_secret: xxxxxxxxxxxx
+  
+#System Health
+system_health:
+
+#Wake_on_lan
+wake_on_lan:
+
+#alarm
+alarm_control_panel:
+  - platform: manual
+    name: "Alarm"
+    code: "xxxxxxxxxx"
+    arming_time: 20
+    delay_time: 5
+    trigger_time: 10
+    disarm_after_trigger: false
+    
+#devicetracker
+device_tracker:
+  - platform: ping
+    consider_home: 10
+    interval_seconds: 10
+    hosts:
+      xxxphone: 192.168.0.xxxx
+      xxxphone: 192.168.0.xxxx
+  - platform: tado
+    username: xxxxxxx@gmail.com
+    password: xxxxxxxxxx
+    home_id: xxxxxxx
+
+#persons
+person:
+  - name: xxxxx
+    id: xxxxx
+    device_trackers:
+      - device_tracker.xxxphone
+      - device_tracker.xxx_telefoon_2
+      - device_tracker.Telefoon_xxx
+      - device_tracker.xxxxx
+  
+  - name: xxxx
+    id: xxxxx
+    device_trackers:
+      - device_tracker.Telefoon_xxxx
+      - device_tracker.xxxx_telefoon_3
+      - device_tracker.xxxxphone
+      - device_tracker.xxxx
+      
+#vacuum
+deebot:
+  username: xxxxxxxx@gmail.com
+  password: xxxxxxxx
+  country: US
+  continent: NA
+  
+#shellcommand
+shell_command:
+  ecovacs_fix: "pip uninstall -y pyasn1 pyasn1-modules sleekxmpp slixmpp && pip install sleekxmpp==1.3.2 dnspython3==1.15.0"
+  
+#stream
+stream:
+
+#camera
+camera:
+  - platform: ffmpeg
+    input: rtsp://xxxxxxxxxxxxx
+    name: camerawoonkamer
+    
+# Sensors
+sensor:
+  - platform: template
+    sensors:
+      vrtnieuws:
+        friendly_name: 'Vrt Nieuws'
+        value_template: >
+          {{ states.sensor.vrt_nieuws.attributes.entries[0].title }}
+          {{ states.sensor.vrt_nieuws.attributes.entries[1].title }}
+  - platform: feedparser
+    name: Vrt Nieuws
+    feed_url: 'https://www.vrt.be/vrtnws/nl.rss.headlines.xml'
+    inclusions:
+      - title
+  - platform: systemmonitor
+    resources:
+      - type: disk_use
+        arg: /home
+      - type: disk_free
+        arg: /home
+      - type: memory_use
+      - type: memory_free
+      - type: processor_use
+      - type: last_boot
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    # If errors occur, remove degree symbol below
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
+  - platform: waze_travel_time
+    name: xxxxxxxxx
+    origin: xxxxxx, xxxxx
+    destination: xxxxxx, xxxxx
+    region: 'EU'
+  - platform: waze_travel_time
+    name: xxxxx
+    origin: xxxxxx, xxxxxx
+    destination: xxxxxxxxx, xxxxxxxxx
+    region: 'EU'
+  - platform: season
+    type: astronomical
+  - platform: buienradar
+    latitude: xxxxxxxxxx
+    longitude: xxxxxxxxxx
+    monitored_conditions:
+      - symbol
+      - humidity
+      - temperature
+      - windspeed
+      - pressure
+  - platform: moon
+  - platform: template
+    sensors:
+      harmony_hub:
+        value_template: '{{ states.remote.harmony_hub.attributes.current_activity }}'
+        friendly_name: 'Harmony Hub'
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+  - platform: template
+    sensors:
+      date_template:
+        friendly_name: 'Date'
+        value_template: '{{ now().timestamp() | timestamp_custom("%d %B %Y", True) }}'
+        entity_id: sensor.date
+  - platform: template
+    sensors:
+      vacuum_main_brush:
+        icon_template: 'mdi:brush'
+        unit_of_measurement: '%'
+        value_template: "{{ ((state_attr('vacuum.basje_2', 'component_main_brush') | float) / 300) | round(0, 'ceil') }}"
+      vacuum_side_brush:
+        icon_template: 'mdi:brush'
+        unit_of_measurement: '%'
+        value_template: "{{ ((state_attr('vacuum.basje_2', 'component_side_brush') | float) / 150) | round(0, 'ceil') }}" 
+      vacuum_component_filter:
+        icon_template: 'mdi:filter-remove-outline'
+        unit_of_measurement: '%'
+        value_template: "{{ ((state_attr('vacuum.basje_2', 'component_filter') | float) / 120) | round(0, 'ceil') }}"
+      vacuum_status:
+        entity_id:
+          - vacuum.bas_2
+        value_template: '{{ states.vacuum.basje_2.attributes.status }}'
+        icon_template: >
+          {% set val =  states.vacuum.basje_2.attributes.status  %}
+          {% if val == 'Charging' %}
+            mdi:battery-charging
+          {% elif val == 'Cleaning' %}
+            mdi:move-resize
+          {% elif val == 'Returning home' %}
+            mdi:keyboard-return
+          {% elif val == 'Idle' %}
+            mdi:dots-horizontal
+          {% elif val == 'Paused' %}
+            mdi:pause-circle
+          {% else %}
+            mdi:help-circle
+          {% endif %}
+      vacuum_battery_level:
+        icon_template: '{{ states.vacuum.basje_2.attributes.battery_icon }}'
+        value_template: '{{ states.vacuum.basje_2.attributes.battery_level }}'
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      afvaldatum:
+        friendly_name: 'Afvaldatum'
+        value_template: '{{ as_timestamp(states.calendar.afvalbeheer.attributes.start_time) | timestamp_custom("%-d %B") }}'
+        icon_template: mdi:calendar
+      afvaltype:
+        friendly_name: 'Afvalsoort'
+        value_template: '{{ states.calendar.afvalbeheer.attributes.message }}'
+        icon_template: mdi:recycle
+      feestdagen:
+        friendly_name: 'Feestdagen'
+        value_template: '{{ states.calendar.feestdagen_in_belgie.attributes.message }}''{{ as_timestamp(states.calendar.feestdagen_in_belgie.attributes.start_time) | timestamp_custom("%-d %B") }}'
+      formule1:
+        friendly_name: 'Formule 1'
+        value_template: '{{ states.calendar.f1_2020.attributes.message }}''{{ as_timestamp(states.calendar.f1_2020.attributes.start_time) | timestamp_custom("%-d %B") }}'
+  - platform: template
+    sensors:
+      sidebar_active:
+        value_template: >-
+          {% set lights = [states.light.badkamer, states.light.badkamer_2, states.light.berging, states.light.bureau, states.light.bureau_links, 
+          states.light.bureau_rechts, states.light.bureauspot_1, states.light.bureauspot_2, states.light.ledstrip_1, 
+          states.light.aqarahub, states.light.terras, states.light.plafond, states.light.spotlinks, states.light.spotrechts, 
+          states.light.tafellamp, states.light.vloerlamp, states.light.wc] %}
+          {% set lights_on = lights | selectattr('state','eq','on') | list %}
+          {% set lights_name = lights | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+
+          {% set switches = [states.switch.tv, states.switch.pc, states.switch.wasmachine, states.switch.stofzuiger] %}
+          {% set switches_on = switches | selectattr('state','eq','on') | list %} 
+          {% set switches_name = switches | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+
+          {% if (lights_on | length ==0 ) and (switches_on | length > 0) %} 
+          {{ switches_name | regex_replace(',([^,]*)$',' en\\1') }} staan aan
+
+          {% elif (lights_on | length ==1) and (switches_on | length == 1) %}
+          {{ lights_name }} en {{switches_name }} staan aan
+
+          {% elif (lights_on | length ==1) and (switches_on | length > 1) %}
+          {{ lights_name }}, {{ switches_name | regex_replace(',([^,]*)$',' en\\1') }} staan aan
+
+          {% elif (lights_on | length > 1) and (switches_on | length == 1) %}
+          {{ lights_on | length }} lampen en {{ switches_name }} staan aan
+
+          {% elif (lights_on | length > 1 ) and (switches_on | length > 1) %}
+          {{ lights_on | length }} lampen, {{ switches_name | regex_replace(',([^,]*)$',' en\\1') }} staan aan
+
+          {% elif (lights_on | length ==1) and (switches_on | length ==0) %}
+          {{ lights_name }} staan aan
+
+          {% elif (lights_on | length >1 ) and (switches_on | length ==0) %}
+          {{ lights_on | length}} lampen staan aan
+
+          {% else %} Alles is uitgeschakeld
+          {% endif %}
+  - platform: template
+    sensors:
+      sidebar_greeting:
+        entity_id: sensor.time
+        value_template: >-
+          {% set t = now().hour %}
+          {% if t <= 1 %} Goedenacht
+          {% elif t <= 3 %} Goedenacht
+          {% elif t <= 5 %} Goedenacht
+          {% elif t <= 7 %} Goedemorgen
+          {% elif t <= 9 %} Goedemorgen
+          {% elif t <= 10.5 %} Goedemorgen 
+          {% elif t <= 13 %} Goededag
+          {% elif t <= 15 %} Goededag
+          {% elif t <= 17 %} Goededag
+          {% elif t <= 19 %} Goedenavond
+          {% elif t <= 22 %} Goedenavond
+          {% elif t <= 23 %} Goedenavond
+          {% else %} Goedenavond
+          {% endif %}       
+  - platform: afvalbeheer
+    wastecollector: Limburg.NET
+    resources:
+      - restafval
+      - grofvuil
+      - gft
+      - papier
+      - pmd
+    postcode: xxx
+    cityname: xxxx
+    streetname: xxxxx
+    streetnumber: xxxxx
+    dutch: 1
+  - platform: template
+    sensors:
+      next_afvaltypedatum:
+        friendly_name: 'Eerstvolgende afvaltypedatum'
+        value_template: >
+          {% if states("sensor.next_afvaltype") == 'gft' %} {{ states("sensor.limburg_net_gft") }}
+          {% elif states("sensor.next_afvaltype") == 'restafval' %} {{ states("sensor.limburg_net_restafval") }}
+          {% elif states("sensor.next_afvaltype") == 'papier' %} {{ states("sensor.limburg_net_papier") }}
+          {% endif %}
+      next_afvaltype:
+        friendly_name: 'Eerstvolgende afvaltype'
+        value_template: >
+          {% if as_timestamp(strptime(state_attr("sensor.limburg_net_gft", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_restafval", "Sort-date"), "")) | int and as_timestamp(strptime(state_attr("sensor.limburg_net_gft", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_papier", "Sort-date"), "")) | int %}gft
+          {% elif as_timestamp(strptime(state_attr("sensor.limburg_net_restafval", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_gft", "Sort-date"), "")) | int and as_timestamp(strptime(state_attr("sensor.limburg_net_restafval", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_papier", "Sort-date"), "")) | int %}restafval
+          {% elif as_timestamp(strptime(state_attr("sensor.limburg_net_papierr", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_gft", "Sort-date"), "")) | int and as_timestamp(strptime(state_attr("sensor.limburg_net_papier", "Sort-date"), "")) | int < as_timestamp(strptime(state_attr("sensor.limburg_net_restafval", "Sort-date"), "")) | int %}papier
+          {% endif %}
+
+#light:
+light:
+  - platform: group
+    name: Woonkamer verlichting
+    entities:
+      - light.vloerlamp
+      - light.tafellamp
+  - platform: group
+    name: Slaapkamer
+    entities:
+      - light.plafond
+  - platform: group
+    name: Basstraps
+    entities:
+      - light.basstraplinks
+      - light.basstraprechts
+  - platform: group
+    name: Spotjes xxxx
+    entities:
+      - light.spotlinks
+      - light.spotrechts
+  - platform: group
+    name: Spotjes xxxx
+    entities:
+      - light.bureauspot_1
+      - light.bureauspot_2
+  - platform: group
+    name: Badkamer verlichting
+    entities:
+      - light.badkamer
+      - light.lavabo
+  - platform: group
+    name: all
+    entities:
+      - light.badkamer
+      - light.lavabo
+      - light.berging
+      - light.bureau
+      - light.bureau_links
+      - light.bureau_rechts
+      - light.bureauspot_1
+      - light.bureauspot_2
+      - light.ledstrip_1
+      - light.aqarahub
+      - light.plafond
+      - light.spotlinks
+      - light.spotrechts
+      - light.vloerlamp
+      - light.wc
+      - light.tafellamp
+      - light.terras
+      
+#timer
+timer:
+  badkamer:
+    duration: '00:00:07'

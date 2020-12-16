@@ -1,0 +1,35 @@
+
+- cal_id: xxxxxxxxxxx@group.calendar.google.com
+  entities:
+  - device_id: f1_2020
+    ignore_availability: true
+    name: F1 2020
+    track: true
+
+- cal_id: xxxxxxx@gmail.com
+  entities:
+  - device_id: xxxxxxxx_gmail_com
+    ignore_availability: true
+    name: xxxxxxxx@gmail.com
+    track: true
+
+- cal_id: xxxxxxxx@group.calendar.google.com
+  entities:
+  - device_id: afvalbeheer
+    ignore_availability: true
+    name: afvalbeheer
+    track: true
+
+- cal_id: xxxxxxxx@group.v.calendar.google.com
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: xxxxxxxxx@group.v.calendar.google.com
+  entities:
+  - device_id: feestdagen_in_belgie
+    ignore_availability: true
+    name: "Feestdagen in Belgi\xEB"
+    track: true

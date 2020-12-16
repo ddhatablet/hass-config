@@ -1,0 +1,47 @@
+
+xxxphone:
+  hide_if_away: false
+  icon:
+  mac:
+  name: xxxphone
+  picture:
+  track: true
+  
+Telefoon_xxx:
+  name: xxx
+  mac: xx:xx:xx:xx:xx:xx
+  picture: /local/xxx.jpg
+  track: true
+  hide_if_away: false
+  consider_home: 60
+
+xxxphone:
+  hide_if_away: false
+  icon:
+  mac:
+  name: xxxphone
+  picture:
+  track: true
+
+Telefoon_xxx:
+  hide_if_away: false
+  icon:
+  mac: xx:xx:xx:xx:xxxx
+  name: xxx
+  picture: /local/xxx.jpg
+  track: true
+  consider_home: 60
+
+xxx_telefoon_3:
+  name: xxx telefoon
+  mac: 'xxxxxx'
+  icon:
+  picture:
+  track: true
+
+xxx_telefoon_2:
+  name: xxx telefoon
+  mac: 'xxxxxx'
+  icon:
+  picture:
+  track: true

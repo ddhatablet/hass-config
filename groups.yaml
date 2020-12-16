@@ -1,0 +1,37 @@
+date_card:
+  name: Date
+  entities:
+   - sensor.date_template
+people:
+  name: people
+  entities:
+   - person.xxx
+   - person.xxx
+deuren:
+  entities:
+   - binary_sensor.deursensor_voordeur
+   - binary_sensor.deursensor_terras
+   - binary_sensor.deursensor_studio
+   - binary_sensor.deursensor_slaapkamer
+   - binary_sensor.deursensor_berging
+   - binary_sensor.deursensor_badkamer
+   
+beweging:
+  entities:
+   - binary_sensor.bewegingssensor_hal
+   - binary_sensor.bewegingssensor_keuken
+   - binary_sensor.bewegingssensor_toilet
+   - binary_sensor.bewegingssensor_woonkamer
+   
+sensoren:
+  entities:
+   - binary_sensor.deursensor_voordeur
+   - binary_sensor.deursensor_terras
+   - binary_sensor.deursensor_studio
+   - binary_sensor.deursensor_slaapkamer
+   - binary_sensor.deursensor_berging
+   - binary_sensor.deursensor_badkamer
+   - binary_sensor.bewegingssensor_hal
+   - binary_sensor.bewegingssensor_keuken
+   - binary_sensor.bewegingssensor_toilet
+   - binary_sensor.bewegingssensor_woonkamer

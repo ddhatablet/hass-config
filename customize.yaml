@@ -1,0 +1,22 @@
+sensor.season:
+      templates:
+        icon: >
+          if (state === 'spring') return 'mdi:flower';
+          if (state === 'summer') return 'mdi:sunglasses';
+          if (state === 'autumn') return 'mdi:leaf';
+          if (state === 'winter') return 'mdi:snowflake';
+          return 'mdi:cloud';
+        icon_color: >
+          if (state === 'spring') return 'green';
+          if (state === 'summer') return 'yellow';
+          if (state === 'autumn') return 'orange';
+          if (state === 'winter') return 'blue';
+          return 'mdi:grey';
+        _stateDisplay: >
+          return state|title;
+          
+person.dave:
+    entity_picture: "/local/xxxx.jpg"
+
+person.dorien:
+    entity_picture: "/local/xxxx.jpg"
